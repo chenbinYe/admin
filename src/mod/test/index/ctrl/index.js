@@ -8,6 +8,7 @@
             $scope.action = {}
             $scope.action.title = 'heheheh'
 
+            console.log('test')
 
         }])
     }
