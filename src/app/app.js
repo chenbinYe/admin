@@ -10,6 +10,8 @@ define(['angular'], function(require, exports, module) {
             $rootScope.F = F;
 
 
+
+
             //var conf = {module: 'shop', controller: 'index', action: 'coupon', version: G.load_version || ''}
             //var conf = {module: 'shop', controller: G.user.ent_code, action: 'liuyi', version: G.load_version || ''}
             var conf = {
@@ -19,16 +21,18 @@ define(['angular'], function(require, exports, module) {
                     version: G.load_version || ''
                 }
                 //var conf = {module: 'shop', version: G.load_version || ''}
-
-
+            F.toMod_on = function(c){
+                G.modOn =  c.module+'/'+c.controller+'/'+c.action;
+            }
+                F.toMod_on(conf)
 
 
             $ngsea(app, conf)
             $rootScope.$on('$routeChangeSuccess', function(e, target) {
-                $('body').scrollTop(0)
-            })
-            // $('#load_view').show()
-            
+                    $('body').scrollTop(0)
+                })
+                // $('#load_view').show()
+
 
             /**
              * F函数
@@ -99,9 +103,31 @@ define(['angular'], function(require, exports, module) {
             }
 
 
-            RQ.get('test',{},function(res){
+            //全局请求   请求菜单等页面的排版
+            RQ.get('test', {}, function(res) {
                 console.log(res)
             })
+
+
+        }]).directive('modOn',['$timeout','$routeParams',function($timeout,$routeParams){
+
+            return {
+                restrict: "EA",
+                scope:{
+                    modOn:'@'
+                },
+                link: function (scope, element, attrs) {
+                    $timeout(function () {
+                            F.toMod_on($routeParams)
+                            console.log(scope.modOn,G.modOn)
+                            if(scope.modOn==G.modOn){
+                                element.addClass('active')
+                            }else{
+                                element.removeClass('active')
+                            }
+                    })
+                }
+            }
 
         }])
 })
