@@ -57,10 +57,13 @@ seajs.use([
                 'theme/main',
                 'theme/utility',
                 'theme/widgets',
-
             ], function() {
                 //console.log('bootstrap_ng')
                 angular.bootstrap(document, ["app"])
+
+                seajs.use([
+                'theme/init',])
+
             })
         }
         //定义网站头
