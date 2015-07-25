@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="zh">
     <meta charset="UTF-8">
     <title ng-bind-html="site_title"></title>
-
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta content="email=no" name="format-detection" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-
     <!-- build:weixin -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <!-- endbuild -->
-
     <!-- build:less -->
-    <link rel="stylesheet/less" type="text/css" href="static/less/style.less"/>
+    <link rel="stylesheet/less" type="text/css" href="static/less/style.less" />
     <script src="static/less/less.js"></script>
     <!-- endbuild -->
 </head>
+
 <body>
-
-<div ng-view></div>
-<div class="load-view" ng-include="G.path.public+'/view/load-view.html'"></div>
-
-
-<script>
+    <div id='main'>
+        <!--top html-->
+        <header class="navbar navbar-fixed-top navbar-shadow" ng-include="G.path.public+'/view/top.html'"></header>
+        <!--left html-->
+        <aside id="sidebar_left" class="nano nano-light affix sidebar-default has-scrollbar" ng-include="G.path.public+'/view/left.html'"></aside>
+        <section id="content_wrapper">
+            <header id="topbar" class="alt" ng-include="G.path.public+'/view/header.html'"></header>
+            <section id="content" class="" ng-view></section>
+            <footer id="content-footer" class="affix" ng-include="G.path.public+'/view/footer.html'"></footer>
+        </section>
+    </div>
+    <!-- <div class="load-view" ng-include="G.path.public+'/view/load-view.html'"></div> -->
+    <script>
     var G = {
-        api_host:'./site/',
-        path:{
-            root:'./',
-            directive:'./src/directive',
-            mod:'./src/mod',
-            public:'./src/public'
+            api_host: './site/',
+            path: {
+                root: './',
+                directive: './src/directive',
+                mod: './src/mod',
+                public: './src/public'
+            },
+            user_version: '20150529.08' + Math.random(), //用户数据版本
+            load_version: '20150529.08' + Math.random(), //文件加载版本
+            debug: 0 //正式环境 0 debug模式设置为1 微信模式 2 PC模式
         },
-        user_version: '20150529.08' + Math.random(),//用户数据版本
-        load_version: '20150529.08' + Math.random(),//文件加载版本
-        debug: 0//正式环境 0 debug模式设置为1 微信模式 2 PC模式
-    },F={};
-</script>
-
-<script src="src/lib/sea.js"></script>
-<script src="src/load.js?0618"></script>
+        F = {};
+    </script>
+    <script src="src/lib/sea.js"></script>
+    <script src="src/load.js?0618"></script>
 </body>
+
 </html>
