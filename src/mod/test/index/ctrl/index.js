@@ -9,6 +9,9 @@
             $scope.action.title = 'heheheh'
 
             console.log('test')
+            console.log($routeParams)
+            $scope.modOn  =$routeParams
+
 
         }])
     }

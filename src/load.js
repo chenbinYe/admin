@@ -13,7 +13,7 @@ seajs.config({
         'zepto': 'lib/common/zepto.js',
     },
     'map': [
-        [/^(.*\.(?:css|js))(?!\?)(.*)$/i, '$1?' + G.load_version]
+        [/^(.*\.(?:css|js|less))(?!\?)(.*)$/i, '$1?' + G.load_version]
     ],
 
     paths: {
